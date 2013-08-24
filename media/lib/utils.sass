@@ -1,0 +1,111 @@
+//
+//  Copyright (c) 2013 Kumail Hunaid
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+//
+
+// global measures
+$page_width: 940px
+$max_page_width: 940px
+
+// Easily style all form inputs that are standard text fields
+=text-inputs
+    input[type="email"],
+    input[type="number"],
+    input[type="password"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="text"],
+    input[type="url"],
+    input[type="color"],
+    input[type="date"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"]
+        @content
+
+=clear
+    zoom: 1
+    &:before, &:after
+        content: ""
+        display: table
+    &:after
+        clear: both
+
+=breakpoints($min, $max: false)
+    @if $max == false
+        @media only screen and (min-width: $min)
+            @content
+    @else
+        @media only screen and (min-width: $min) and (max-width: $max)
+            @content
+
+=border_radius_even($a)
+    -webkit-border-radius: $a
+    -moz-border-radius: $a
+    border-radius: $a
+
+// border radius
+// d  a
+// c  b
+=border_radius($a, $b, $c, $d)
+    -webkit-border-top-right-radius: $a
+    -moz-border-radius-topright: $a
+    border-top-right-radius: $a
+    -webkit-border-bottom-right-radius: $b
+    -moz-border-radius-bottomright: $b
+    border-bottom-right-radius: $b
+    -webkit-border-bottom-left-radius: $c
+    -moz-border-radius-bottomleft: $c
+    border-bottom-left-radius: $c
+    -webkit-border-top-left-radius: $d
+    -moz-border-radius-topleft: $d
+    border-top-left-radius: $d
+
+=trasition($property, $duration: 0.3s, $function: ease-out)
+    -moz-transition: $property $duration $function
+    -o-transition: $property $duration $function
+    -webkit-transition: $property $duration $function
+    transition: $property $duration $function
+
+=gradient($baseColor, $toColor)
+    background-color: $baseColor
+    background-image: -moz-linear-gradient(top, $baseColor, $toColor)
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, $baseColor), color-stop(1, $toColor))
+    background-image: linear-gradient(top, $baseColor, $toColor)
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='$baseColor', EndColorStr='$toColor')
+
+=shadow($off-x, $off-y, $blur, $color)
+    -moz-box-shadow: $off-y $off-x $blur $color
+    -webkit-box-shadow: $off-y $off-x $blur $color
+    box-shadow: $off-y $off-x $blur $color
+
+=rotate($deg)
+    -webkit-transform: rotate($deg)
+    -moz-transform: rotate($deg)
+    -o-transform: rotate($deg)
+    transform: rotate($deg)
+
+=placeholder
+    &::-webkit-input-placeholder
+        @content
+    &:-moz-placeholder
+        @content

@@ -1,0 +1,100 @@
+@import lib/normalize
+@import lib/grid
+@import lib/utils
+@import "../gridforms/gridforms"
+
+
+$light_yellow: #FEFCE3
+$gray_dark: #333333
+$prussian_blue: #2C5AA0
+$maroon: #AA0000
+$red: #D60000
+$forrest_green: #16502D
+
+
+*, *:before, *:after
+	-webkit-box-sizing: border-box
+	-moz-box-sizing: border-box
+	box-sizing: border-box
+
+html
+	background: $light_yellow
+	font-family: "nimbus-sans", helvetica, sans-serif
+	text-rendering: optimizeLegibility
+	color: $gray_dark
+	font-size: 18px
+	line-height: 1.15
+
+body
+	+breakpoints(1000px)
+		width: 900px
+		margin: 0 auto
+	+breakpoints(0, 1000px)
+		padding: 0 10%
+a
+	color: $prussian_blue
+
+.header
+	text-align: center
+	padding-top: 100px
+	*
+		margin: 0
+	h1
+		font-size: 70px
+		font-weight: 900
+		letter-spacing: -1px
+	h2
+		font-size: 32px
+		letter-spacing: -1px
+		word-spacing: -2px
+		font-weight: 700
+		margin-bottom: 40px
+	h3
+		font-size: 24px
+		font-weight: 400
+		+breakpoints(700px)
+			padding: 0 50px
+	+breakpoints(0, 600px)
+		img
+			width: 200px
+		h2
+			font-size: 22px
+		h3
+			font-size: 20px
+
+.footer
+	font: 28px serif
+	color: $forrest_green
+	text-align: center
+	padding: 0 50px
+	+breakpoints(0, 500px)
+		font-size: 20px
+		padding: 0
+
+.why
+	+breakpoints(0, 800px)
+		div.my-grid-form
+			display: none
+		div img
+			display: none
+	p
+		position: relative
+		.digit
+			position: absolute
+			top: 0
+			left: -20px
+			font-weight: bold
+			color: $red
+
+// Defaults
+// $max-columns: 12,
+// $font-size-large: 18px,
+// $legend-color: lighten(#333, 5%),
+// $field-padding: 8px,
+// $label-font-size: 10px,
+// $grid-border-color: #333,
+// $label-color: #333,
+// $field-focus-color: darken(#FFFDED, 5%)
+
+.my-grid-form
+	+grid-form($field-focus-color: white, $label-font-size: 12px)

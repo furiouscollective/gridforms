@@ -1,0 +1,145 @@
+//
+//  Grid Forms
+//  Copyright (c) 2013 Kumail Hunaid
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+//
+
+=_placeholder
+    &::-webkit-input-placeholder
+        @content
+    &:-moz-placeholder
+        @content
+
+
+=_breakpoints($min, $max: false)
+    @if $max == false
+        @media only screen and (min-width: $min)
+            @content
+    @else
+        @media only screen and (min-width: $min) and (max-width: $max)
+            @content
+
+=_clear
+    zoom: 1
+    &:before, &:after
+        content: ""
+        display: table
+    &:after
+        clear: both
+
+=_reset
+
+
+=grid-form($max-columns: 12, $font-size-large: 18px, $legend-color: lighten(#333, 5%), $field-padding: 8px, $label-font-size: 10px, $grid-border-color: #333, $label-color: #333, $field-focus-color: darken(#FFFDED, 5%))
+
+    // Sacrifice compatibility with IE7 and below to use the border-box model
+    *, *:before, *:after
+        -webkit-box-sizing: border-box
+        -moz-box-sizing: border-box
+        box-sizing: border-box
+
+    // Fields cannot be spaced away from the grid (clear out margins/padding)
+    // Field font sizes need to be applied here
+    input[type="text"], input[type="email"], textarea, select
+        font-size: $font-size-large
+        padding: 0
+        margin: 0
+        width: 100%
+    // Remove backgrounds and borders from fields
+    input[type="text"], input[type="email"], textarea
+        border: 0
+        background: transparent
+        +_placeholder
+            font-weight: 100
+            color: lighten($label-color, 15%)
+        &:focus
+            outline: none
+    fieldset
+        border: none
+        padding: 0
+        margin: 0
+        legend
+            border: none
+            border-bottom: 4px solid $legend-color
+            color: $legend-color
+            font-size: $font-size-large
+            font-weight: bold
+            padding-bottom: 5px
+            position: static
+            width: 100%
+        fieldset
+            legend
+                border-bottom: 2px solid $legend-color
+                font-weight: normal
+            fieldset legend
+                border-bottom: 1px solid $legend-color
+                font-weight: normal
+                font-size: $font-size-large - 3px
+    [data-row-span]
+        border-bottom: 1px solid $grid-border-color
+        width: 100%
+        +_clear
+        +_breakpoints(0, 700px)
+            border-bottom: none
+        [data-field-span]
+            padding: $field-padding
+            float: left
+            +_breakpoints(0, 700px)
+                border-bottom: 1px solid $grid-border-color
+                width: 100% !important
+            +_breakpoints(700px)
+                border-right: 1px solid $grid-border-color
+                display: block
+            label:first-child
+                margin-top: 0
+                text-transform: uppercase
+                letter-spacing: 1px
+                font-size: $label-font-size
+                color: $label-color
+                display: block
+                margin-bottom: 4px
+                &:hover
+                    cursor: text
+            &:last-child
+                border-right: none
+            &.focus
+                background: $field-focus-color
+                label
+                    color: darken($label-color, 5%)
+            &:hover
+                background: lighten($field-focus-color, 5%)
+                cursor: text
+
+    // Create row spans for n columns in the grid
+    @for $grid_i from 1 through $max-columns
+        [data-row-span="#{$grid_i}"]
+            // Each field can only span to the maximum row span
+            // For each possible field span
+            @for $span_i from 1 through $grid_i
+                & > [data-field-span="#{$span_i}"]
+                    // Divide the grid by $grid_i columns
+                    $single_column_span: 100% / $grid_i
+
+                    // Set the width for this particular field span
+                    width: $single_column_span * $span_i
+
+// Create Grid Form
+.grid-form
+    +grid-form
