@@ -1,4 +1,3 @@
-
 ##Gridforms
 An effort to make beautiful forms for web applications that make data entry less painful. Grid forms is a front-end library (Just CSS at the moment) which handles the boiler plate necessary to build grid based forms.
 
@@ -67,11 +66,10 @@ Include Scott Jehl's [Respond.js](https://github.com/scottjehl/Respond) if you w
 
 ###Todo
 
-- Write the JS required to focus a field
-- Gracefully handle label overflow
-- Reset unknown styles so forms look the same wherever they're used
 - Test forms with all possible field types
-- Introduce another sass file that can style the various field types
+- Reset unknown styles so forms look the same wherever they're used
+- Gracefully handle label overflow
 - Introduce a sass file to style error/help messages
+- Introduce another sass file that can style the various field types (debatable)
 
 If you have ideas on how to improve Grid forms or if you want to contribute to this repo, shoot me an email at [contact@kumailht.com](mailto:contact@kumailht.com).
