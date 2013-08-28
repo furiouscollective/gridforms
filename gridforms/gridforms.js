@@ -32,13 +32,21 @@ $(function() {
 			this.events();
 		},
 		focusField: function(currentField) {
-			this.el.fieldsContainers.removeClass('focus');
 			currentField.closest('[data-field-span]').addClass('focus');
+		},
+		removeFieldFocus: function() {
+			this.el.fieldsContainers.removeClass('focus');
 		},
 		events: function() {
 			var that = this;
+			that.el.fieldsContainers.click(function() {
+				$(this).find('input, textarea, select').focus();
+			});
 			that.el.focusableFields.focus(function() {
 				that.focusField($(this));
+			});
+			that.el.focusableFields.blur(function() {
+				that.removeFieldFocus();
 			});
 		}
 	};
