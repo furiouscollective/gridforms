@@ -134,11 +134,8 @@
             // For each possible field span
             @for $span_i from 1 through $grid_i
                 & > [data-field-span="#{$span_i}"]
-                    // Divide the grid by $grid_i columns
-                    $single_column_span: 100% / $grid_i
-
                     // Set the width for this particular field span
-                    width: $single_column_span * $span_i
+                    width: percentage($span_i/$grid_i)
 
 // Create Grid Form
 .grid-form
