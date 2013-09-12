@@ -1962,7 +1962,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 .grid-form [data-row-span="11"] > [data-field-span="8"] { width: 72.72727%; }
 .grid-form [data-row-span="11"] > [data-field-span="9"] { width: 81.81818%; }
 .grid-form [data-row-span="11"] > [data-field-span="10"] { width: 90.90909%; }
-.grid-form [data-row-span="11"] > [data-field-span="11"] { width: 100.0%; }
+.grid-form [data-row-span="11"] > [data-field-span="11"] { width: 100%; }
 .grid-form [data-row-span="12"] > [data-field-span="1"] { width: 8.33333%; }
 .grid-form [data-row-span="12"] > [data-field-span="2"] { width: 16.66667%; }
 .grid-form [data-row-span="12"] > [data-field-span="3"] { width: 25%; }
@@ -2091,7 +2091,7 @@ a { color: #2c5aa0; }
 .my-grid-form [data-row-span="11"] > [data-field-span="8"] { width: 72.72727%; }
 .my-grid-form [data-row-span="11"] > [data-field-span="9"] { width: 81.81818%; }
 .my-grid-form [data-row-span="11"] > [data-field-span="10"] { width: 90.90909%; }
-.my-grid-form [data-row-span="11"] > [data-field-span="11"] { width: 100.0%; }
+.my-grid-form [data-row-span="11"] > [data-field-span="11"] { width: 100%; }
 .my-grid-form [data-row-span="12"] > [data-field-span="1"] { width: 8.33333%; }
 .my-grid-form [data-row-span="12"] > [data-field-span="2"] { width: 16.66667%; }
 .my-grid-form [data-row-span="12"] > [data-field-span="3"] { width: 25%; }
