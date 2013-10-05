@@ -30,6 +30,7 @@ $(function() {
 		init: function() {
 			this.focusField(this.el.focusableFields.filter(':focus'));
 			this.events();
+			this.fitGrid();
 		},
 		focusField: function(currentField) {
 			currentField.closest('[data-field-span]').addClass('focus');
@@ -48,6 +49,38 @@ $(function() {
 			that.el.focusableFields.blur(function() {
 				that.removeFieldFocus();
 			});
+			$(window).resize(function() {
+				that.fitGrid();
+			});
+			
+		},
+
+		/* fixes the 'border-gap' problem which occurs 
+		 * when one field is taller than the other
+		 */
+		fitGrid: function() {
+			//reset any forced sizing for the resize event
+			$('[data-field-span]').css("height", "");
+
+			//if the document is smaller than the breakpoint, don't resize them
+			if($(document).width() >= 700) {
+				//for each row...
+				var $rows = $('[data-row-span]');
+				$rows.each(function(i) {
+					//get the height of the row (thus the tallest element)
+					var $row = $(this);
+					var rowHeight = $row.height();
+
+					//for each field within the row...
+					var $fields = $row.find('[data-field-span]');
+					$fields.each(function(j) {
+
+						//set the field's height to a uniform height 
+						var $field = $(this);
+						$field.css("height", rowHeight.toString());
+					});
+				});
+			}
 		}
 	};
 
