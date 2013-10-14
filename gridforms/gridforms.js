@@ -24,13 +24,13 @@
 $(function() {
 	var GridForms = {
 		el: {
+			fieldsRows : $('[data-row-span]'),
 			fieldsContainers: $('[data-field-span]'),
 			focusableFields: $('input, textarea, select', '[data-field-span]')
 		},
 		init: function() {
 			this.focusField(this.el.focusableFields.filter(':focus'));
 			this.events();
-			this.fitGrid();
 		},
 		focusField: function(currentField) {
 			currentField.closest('[data-field-span]').addClass('focus');
@@ -40,6 +40,7 @@ $(function() {
 		},
 		events: function() {
 			var that = this;
+			that.equalizeFieldHeights();
 			that.el.fieldsContainers.click(function() {
 				$(this).find('input, textarea, select').focus();
 			});
@@ -50,37 +51,48 @@ $(function() {
 				that.removeFieldFocus();
 			});
 			$(window).resize(function() {
-				that.fitGrid();
+				that.equalizeFieldHeights();
 			});
 			
 		},
-
-		/* fixes the 'border-gap' problem which occurs 
-		 * when one field is taller than the other
-		 */
-		fitGrid: function() {
+		equalizeFieldHeights: function() {
 			//reset any forced sizing for the resize event
-			$('[data-field-span]').css("height", "");
+			this.el.fieldsContainers.css("height", "auto");
 
-			//if the document is smaller than the breakpoint, don't resize them
-			if($(document).width() >= 700) {
-				//for each row...
-				var $rows = $('[data-row-span]');
-				$rows.each(function(i) {
-					//get the height of the row (thus the tallest element)
-					var $row = $(this);
-					var rowHeight = $row.height();
+			//get the rows
+			var rows = this.el.fieldsRows;
+			var fields = this.el.fieldsContainers;
 
-					//for each field within the row...
-					var $fields = $row.find('[data-field-span]');
-					$fields.each(function(j) {
+			//make sure that the fields aren't stacked
+			if(this.getTotalFieldsWidth(rows) <= rows.first().width()) {
+				rows.each(function() {
+					//get the height of the row (thus the tallest element's height)
+					var row = $(this);
+					var rowHeight = row.height();
 
-						//set the field's height to a uniform height 
-						var $field = $(this);
-						$field.css("height", rowHeight.toString());
-					});
+					//set the height for each field in the row...
+					row.find(fields).height(rowHeight);
 				});
 			}
+		},
+
+		getTotalFieldsWidth : function(rows) {
+			//get the first row 
+			//which does not only contain one field 
+			var firstRow = rows
+				.filter(function() {
+					return $(this).attr("data-row-span") !== "1";
+				})
+				.first();
+
+			//get to the total width 
+			//of each field witin the row
+			var totalWidth = 0;
+			firstRow.children().each(function() {
+				totalWidth += $(this).width();
+			});
+			return totalWidth;
+			
 		}
 	};
 
