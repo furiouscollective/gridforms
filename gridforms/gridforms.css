@@ -1,5 +1,6 @@
 .grid-form *, .grid-form *:before, .grid-form *:after { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 .grid-form input[type="text"], .grid-form input[type="email"], .grid-form textarea, .grid-form select { font-size: 18px; padding: 0; margin: 0; width: 100%; }
+.grid-form textarea { resize: vertical; }
 .grid-form input[type="text"], .grid-form input[type="email"], .grid-form textarea { border: 0; background: transparent; }
 .grid-form input[type="text"]::-webkit-input-placeholder, .grid-form input[type="email"]::-webkit-input-placeholder, .grid-form textarea::-webkit-input-placeholder { font-weight: 100; color: #595959; }
 .grid-form input[type="text"]:-moz-placeholder, .grid-form input[type="email"]:-moz-placeholder, .grid-form textarea:-moz-placeholder { font-weight: 100; color: #595959; }
@@ -8,6 +9,8 @@
 .grid-form fieldset legend { border: none; border-bottom: 4px solid #404040; color: #404040; font-size: 18px; font-weight: bold; padding-bottom: 5px; position: static; width: 100%; }
 .grid-form fieldset fieldset legend { border-bottom: 2px solid #404040; font-weight: normal; }
 .grid-form fieldset fieldset fieldset legend { border-bottom: 1px solid #404040; font-weight: normal; font-size: 15px; }
+.grid-form select { background: transparent; line-height: 1; border: 0; border-radius: 0; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+.grid-form select { overflow: hidden; background: url(../media/images/Arrows-Down-4-icon.png) no-repeat right; }
 .grid-form [data-row-span] { border-bottom: 1px solid #333333; width: 100%; zoom: 1; }
 .grid-form [data-row-span]:before, .grid-form [data-row-span]:after { content: ""; display: table; }
 .grid-form [data-row-span]:after { clear: both; }
