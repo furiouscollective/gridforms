@@ -62,6 +62,8 @@
         padding: 0
         margin: 0
         width: 100%
+    textarea
+        resize: vertical
     // Remove backgrounds and borders from fields
     input[type="text"], input[type="email"], textarea
         border: 0
@@ -92,6 +94,18 @@
                 border-bottom: 1px solid $legend-color
                 font-weight: normal
                 font-size: $font-size-large - 3px
+    select
+        background: transparent
+        line-height: 1
+        border: 0
+        border-radius: 0
+        -webkit-appearance: none
+        -moz-appearance:    none
+        appearance:         none
+    //Adding the arrow down
+    select
+        overflow: hidden
+        background: url(../media/images/Arrows-Down-4-icon.png) no-repeat right
     [data-row-span]
         border-bottom: 1px solid $grid-border-color
         width: 100%
