@@ -67,10 +67,10 @@ $(function() {
                 fieldsRows.each(function() {
                     // Get the height of the row (thus the tallest element's height)
                     var fieldRow = $(this);
-                    var rowHeight = fieldRow.height();
+                    var rowHeight = fieldRow.css('height');
 
                     // Set the height for each field in the row...
-                    fieldRow.find(fieldsContainers).height(rowHeight);
+                    fieldRow.find(fieldsContainers).css('height', rowHeight);
                 });
             }
         },
