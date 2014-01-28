@@ -43,7 +43,7 @@ $(function() {
         events: function() {
             var that = this;
             that.el.fieldsContainers.click(function() {
-                $(this).find('input, textarea, select').focus();
+                $(this).find('input[type="text"], textarea, select').focus();
             });
             that.el.focusableFields.focus(function() {
                 that.focusField($(this));
