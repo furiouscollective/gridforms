@@ -25,7 +25,7 @@ Each row of fields is a `div` element with a `data-row-span` attribute. It is se
 Each row has a set of fields. Fields are wrapped in `div` elements and have a `data-field-span` attached to it. Set to "1" in this example, which means the field spans 1 columns.
 
 ```
-<form class="my-grid-form">
+<form class="grid-form">
 	<fieldset>
 		<legend>Form Section</legend>
 		<div data-row-span="2">
