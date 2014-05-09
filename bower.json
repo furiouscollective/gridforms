@@ -1,0 +1,27 @@
+{
+  "name": "Grid Forms",
+  "version": "1.0.0",
+  "homepage": "http://kumailht.com/gridforms/",
+  "authors": [
+    "Kumail Hunaid <contact@kumailht.com>"
+  ],
+  "description": "An effort to make beautiful forms for web applications that make data entry less painful. Gridforms is a front-end library which handles the boilerplate necessary to build grid based forms.",
+  "main": "gridforms/gridforms.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "grid",
+    "css",
+    "forms",
+    "beautiful"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
