@@ -93,4 +93,5 @@ $(function() {
         }
     };
     GridForms.init();
+    window.GridForms = GridForms;
 });
