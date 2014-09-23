@@ -14,7 +14,7 @@
   ],
   "ignore": [
     "media/*",
-    "*.html",
+    "*.html"
   ],
   "license": "MIT"
 }
