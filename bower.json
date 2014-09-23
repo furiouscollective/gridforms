@@ -12,5 +12,9 @@
     "Grid",
     "Forms"
   ],
+  "ignore": [
+    "media/*",
+    "*.html",
+  ],
   "license": "MIT"
 }
