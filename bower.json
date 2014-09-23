@@ -1,0 +1,16 @@
+{
+  "name": "gridforms",
+  "version": "1.0.0",
+  "homepage": "kumailht.com/gridforms",
+  "authors": [
+    "Kumail Hunaid <contact@kumailht.com>"
+  ],
+  "description": "Data entry can be beautiful",
+  "main": "gridforms/gridforms.css",
+  "keywords": [
+    "Responsive",
+    "Grid",
+    "Forms"
+  ],
+  "license": "MIT"
+}
