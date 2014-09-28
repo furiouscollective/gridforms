@@ -1,12 +1,12 @@
 {
   "name": "gridforms",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "homepage": "kumailht.com/gridforms",
   "authors": [
     "Kumail Hunaid <contact@kumailht.com>"
   ],
   "description": "Data entry can be beautiful",
-  "main": "gridforms/gridforms.css",
+  "main": ["./gridforms/gridforms.css", "./gridforms/gridforms.js"],
   "keywords": [
     "Responsive",
     "Grid",
