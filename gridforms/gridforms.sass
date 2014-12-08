@@ -57,13 +57,13 @@
 
     // Fields cannot be spaced away from the grid (clear out margins/padding)
     // Field font sizes need to be applied here
-    input[type="text"], input[type="email"], textarea, select
+    input[type="text"], input[type="email"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="url"], input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="time"], input[type="week"], textarea, select
         font-size: $font-size-large
         padding: 0
         margin: 0
         width: 100%
     // Remove backgrounds and borders from fields
-    input[type="text"], input[type="email"], textarea
+    input[type="text"], input[type="email"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="url"], input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="time"], input[type="week"], textarea
         border: 0
         background: transparent
         +_placeholder
