@@ -10,10 +10,18 @@ This is my first ever open source project so please [email](mailto:contact@kumai
 ###Basic Usage
 
 ####1. Import Gridforms
-#####i. Link the CSS file directly if you're fine using the defaults like so:
-```<link rel="stylesheet" type="text/css" href="gridforms.css">```
-#####ii. Import the `gridforms.sass` file into your SASS or SCSS (recomended):
-```@import gridforms.sass```
+
+There are two ways you can import the Gridforms styles:
+
+##### Option A: Link the CSS file directly if you're fine using the defaults, like so:
+  ```html
+<link rel="stylesheet" type="text/css" href="gridforms.css">
+```
+
+##### Option B: Import the `gridforms.sass` file into your SASS or SCSS (recomended):
+  ```css
+@import gridforms.sass
+```
 
 ####2. Markup your Gridform
 ```html
