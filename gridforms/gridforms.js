@@ -21,77 +21,154 @@
 //  THE SOFTWARE.
 //
 
-$(function() {
+(function () {
+    "use strict";
+
+    // Helper function for iterating over Arrays and NodeLists.
+    var forEach = function (nodeList, callback, scope) {
+        var i;
+        for (i = 0; i < nodeList.length; i += 1) {
+            callback.call(scope, nodeList[i], i);
+        }
+        return nodeList;
+    };
+
     var GridForms = {
         el: {
-            fieldsRows: $('[data-row-span]'),
-            fieldsContainers: $('[data-field-span]'),
-            focusableFields: $('input, textarea, select', '[data-field-span]'),
-            window: $(window)
+            fieldsRows: [],
+            fieldsContainers: [],
+            focusableFields: []
         },
-        init: function() {
-            this.focusField(this.el.focusableFields.filter(':focus'));
+
+        init: function () {
+
+            // Cache form elements.
+            this.el.fieldsRows = document.querySelectorAll("[data-row-span]");
+            this.el.fieldsContainers = document.querySelectorAll("[data-field-span]");
+            this.el.focusableFields = document.querySelectorAll("[data-field-span] input, [data-field-span] textarea, [data-field-span] select");
+
+            // Focus any autofocus inputs.
+            this.focusField(document.querySelector(".grid-form :focus"));
+
+            // Adjust field heights.
             this.equalizeFieldHeights();
+
+            // Initialize event listeners and handlers.
             this.events();
         },
-        focusField: function(currentField) {
-            currentField.closest('[data-field-span]').addClass('focus');
-        },
-        removeFieldFocus: function() {
-            this.el.fieldsContainers.removeClass('focus');
-        },
-        events: function() {
-            var that = this;
-            that.el.fieldsContainers.click(function() {
-                $(this).find('input[type="text"], textarea, select').focus();
-            });
-            that.el.focusableFields.focus(function() {
-                that.focusField($(this));
-            });
-            that.el.focusableFields.blur(function() {
-                that.removeFieldFocus();
-            });
-            that.el.window.resize(function() {
-                that.equalizeFieldHeights();
-            });
 
-        },
-        equalizeFieldHeights: function() {
-            this.el.fieldsContainers.css("height", "auto");
-
-            var fieldsRows = this.el.fieldsRows;
-            var fieldsContainers = this.el.fieldsContainers;
-
-            // Make sure that the fields aren't stacked
-            if (!this.areFieldsStacked()) {
-                fieldsRows.each(function() {
-                    // Get the height of the row (thus the tallest element's height)
-                    var fieldRow = $(this);
-                    var rowHeight = fieldRow.css('height');
-
-                    // Set the height for each field in the row...
-                    fieldRow.find(fieldsContainers).css('height', rowHeight);
-                });
+        // focusField finds the parent of the given HTMLElement (typically an
+        // input) and appends the 'focus' class name to the element.
+        focusField: function (currentField) {
+            if (currentField === null) {
+                return;
+            }
+            var elem;
+            var className = "focus";
+            for (elem = currentField.parentNode; elem && elem !== document; elem = elem.parentNode) {
+                if (elem.hasAttribute("data-field-span")) {
+                    if (elem.className.length) {
+                        className = " " + className;
+                    }
+                    elem.className += className;
+                    break;
+                }
             }
         },
-        areFieldsStacked: function() {
-            // Get the first row 
-            // which does not only contain one field 
-            var firstRow = this.el.fieldsRows
-                .not('[data-row-span="1"]')
-                .first();
 
-            // Get to the total width 
-            // of each field witin the row
-            var totalWidth = 0;
-            firstRow.children().each(function() {
-                totalWidth += $(this).width();
+        // removeFieldFocus finds all elements with '[data-field-span]' and
+        // removes the 'focus' class.
+        removeFieldFocus: function () {
+            forEach(this.el.fieldsContainers, function (el) {
+                el.className = el.className.replace("focus", "").trim();
+            }, this);
+        },
+
+        // events initializes event listeners and handlers.
+        events: function () {
+            var that = this;
+            var inputs;
+
+            forEach(this.el.fieldsContainers, function (el) {
+
+                // Listen to form field clicks to trigger focus on child focusable
+                // input elements.
+                el.addEventListener("click", function () {
+                    inputs = this.querySelectorAll("input, textarea, select");
+                    forEach(inputs, function (el) {
+                        el.focus();
+                    }, this);
+                });
+            }, this);
+
+            forEach(this.el.focusableFields, function (el) {
+
+                // Listen to input focus to add a focus class to the parent
+                // [data-field-span] since :focus CSS isn't feasible for styling
+                // parent elements.
+                el.addEventListener("focus", function () {
+                    that.focusField(el);
+                });
+
+                // Listen to input blur and remove the focus class from all
+                // [data-field-span] containers.
+                el.addEventListener("blur", function () {
+                    that.removeFieldFocus();
+                });
+            }, this);
+
+            // Listen to window resizes and trigger automatic field height
+            // adjustments.
+            window.addEventListener("resize", function () {
+                that.equalizeFieldHeights();
             });
+        },
 
-            // Determine whether fields are stacked or not
-            return firstRow.width() <= totalWidth;
+        // equalizeFieldHeights will attempts to adjust the heights of '[data-field-span]'
+        // to match its contents.
+        equalizeFieldHeights: function () {
+            forEach(this.el.fieldsContainers, function (el) {
+                el.style.height = "auto";
+            }, this);
+
+            // Don't adjust heights if fields seem to be stacked.
+            if (!this.areFieldsStacked()) {
+                var rowHeight = 0;
+                forEach(this.el.fieldsRows, function (el) {
+                    rowHeight = parseInt(window.getComputedStyle(el).height.slice(0, -2), 10);
+                    forEach(el.querySelectorAll("[data-field-span]"), function (field) {
+                        field.style.height = rowHeight;
+                    }, this);
+                }, this);
+            }
+        },
+
+        // areFieldsStacked returns true if the sum width of all '[data-field-span]'
+        // is greater than the width of its parent '[data-row-span]'.
+        areFieldsStacked: function () {
+            var firstRow = document.querySelector("[data-row-span]:not([data-row-span='1'])");
+            if (firstRow === null) {
+                return;
+            }
+
+            var firstRowWidth = parseInt(window.getComputedStyle(firstRow).width.slice(0, -2), 10);
+            var totalChildrenWidth = (function (els) {
+                var width = 0;
+                var computed;
+                forEach(els, function (el) {
+                    computed = window.getComputedStyle(el);
+                    width += parseInt(computed.width.slice(0, -2), 10);
+                }, this);
+                return width;
+            }(firstRow.children));
+
+            return firstRowWidth <= totalChildrenWidth;
         }
     };
-    GridForms.init();
+
+    document.addEventListener("DOMContentLoaded", function () {
+        GridForms.init();
+    });
+
     window.GridForms = GridForms;
-});
+}());
