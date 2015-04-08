@@ -25,12 +25,12 @@
     "use strict";
 
     // Helper function for iterating over Arrays and NodeLists.
-    var forEach = function (nodeList, callback, scope) {
+    var forEach = function (list, callback, scope) {
         var i;
-        for (i = 0; i < nodeList.length; i += 1) {
-            callback.call(scope, nodeList[i], i);
+        for (i = 0; i < list.length; i += 1) {
+            callback.call(scope, list[i], i);
         }
-        return nodeList;
+        return list;
     };
 
     var GridForms = {
@@ -40,15 +40,23 @@
             focusableFields: []
         },
 
+        // init queries and caches the document for existing [data-row-span]
+        // and [data-field-span], focuses the first autofocus element, equalizes
+        // field heights, and registers event handlers for focus, click, and
+        // blur events.
         init: function () {
 
             // Cache form elements.
             this.el.fieldsRows = document.querySelectorAll("[data-row-span]");
             this.el.fieldsContainers = document.querySelectorAll("[data-field-span]");
-            this.el.focusableFields = document.querySelectorAll("[data-field-span] input, [data-field-span] textarea, [data-field-span] select");
+            this.el.focusableFields = document.querySelectorAll([
+                "[data-field-span] input",
+                "[data-field-span] textarea",
+                "[data-field-span] select"
+            ].join(", "));
 
             // Focus any autofocus inputs.
-            this.focusField(document.querySelector(".grid-form :focus"));
+            this.focusField(document.querySelector("[autofocus]"));
 
             // Adjust field heights.
             this.equalizeFieldHeights();
@@ -60,9 +68,10 @@
         // focusField finds the parent of the given HTMLElement (typically an
         // input) and appends the 'focus' class name to the element.
         focusField: function (currentField) {
-            if (currentField === null) {
+            if (!currentField) {
                 return;
             }
+
             var elem;
             var className = "focus";
             for (elem = currentField.parentNode; elem && elem !== document; elem = elem.parentNode) {
@@ -87,17 +96,13 @@
         // events initializes event listeners and handlers.
         events: function () {
             var that = this;
-            var inputs;
 
             forEach(this.el.fieldsContainers, function (el) {
 
                 // Listen to form field clicks to trigger focus on child focusable
                 // input elements.
                 el.addEventListener("click", function () {
-                    inputs = this.querySelectorAll("input, textarea, select");
-                    forEach(inputs, function (el) {
-                        el.focus();
-                    }, this);
+                    el.querySelector("input, textarea, select").focus();
                 });
             }, this);
 
@@ -137,7 +142,7 @@
                 forEach(this.el.fieldsRows, function (el) {
                     rowHeight = parseInt(window.getComputedStyle(el).height.slice(0, -2), 10);
                     forEach(el.querySelectorAll("[data-field-span]"), function (field) {
-                        field.style.height = rowHeight;
+                        field.style.height = rowHeight + "px";
                     }, this);
                 }, this);
             }
@@ -147,7 +152,7 @@
         // is greater than the width of its parent '[data-row-span]'.
         areFieldsStacked: function () {
             var firstRow = document.querySelector("[data-row-span]:not([data-row-span='1'])");
-            if (firstRow === null) {
+            if (!firstRow) {
                 return;
             }
 
@@ -166,9 +171,7 @@
         }
     };
 
-    document.addEventListener("DOMContentLoaded", function () {
-        GridForms.init();
-    });
+    document.addEventListener("DOMContentLoaded", GridForms.init.bind(GridForms));
 
     window.GridForms = GridForms;
 }());
