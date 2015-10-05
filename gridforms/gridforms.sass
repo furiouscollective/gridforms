@@ -126,6 +126,25 @@
             &:hover
                 background: lighten($field-focus-color, 5%)
                 cursor: text
+                
+    // Overide styles when printing to ensure good looking output.
+    @media print
+        [data-row-span]
+            display: table
+            height: 56px
+            page-break-inside: avoid
+
+            [data-field-span]
+                border-right: 1px solid #333333
+                display: table-cell
+                float: none
+         
+                &.focus,
+                &:hover
+                    background: none 
+
+                label:first-child
+                    letter-spacing: 0
 
     // Create row spans for n columns in the grid
     @for $grid_i from 1 through $max-columns
