@@ -8,19 +8,23 @@
 .grid-form fieldset legend { border: none; border-bottom: 4px solid #404040; color: #404040; font-size: 18px; font-weight: bold; padding-bottom: 5px; position: static; width: 100%; }
 .grid-form fieldset fieldset legend { border-bottom: 2px solid #404040; font-weight: normal; }
 .grid-form fieldset fieldset fieldset legend { border-bottom: 1px solid #404040; font-weight: normal; font-size: 15px; }
-.grid-form [data-row-span] { border-bottom: 1px solid #333333; width: 100%; zoom: 1; }
+.grid-form [data-row-span] { border-bottom: 1px solid #333; width: 100%; zoom: 1; }
 .grid-form [data-row-span]:before, .grid-form [data-row-span]:after { content: ""; display: table; }
 .grid-form [data-row-span]:after { clear: both; }
 @media only screen and (min-width: 0) and (max-width: 700px) { .grid-form [data-row-span] { border-bottom: none; } }
 .grid-form [data-row-span] [data-field-span] { padding: 8px; float: left; }
-@media only screen and (min-width: 0) and (max-width: 700px) { .grid-form [data-row-span] [data-field-span] { border-bottom: 1px solid #333333; width: 100% !important; } }
-@media only screen and (min-width: 700px) { .grid-form [data-row-span] [data-field-span] { border-right: 1px solid #333333; display: block; } }
-.grid-form [data-row-span] [data-field-span] label:first-child { margin-top: 0; text-transform: uppercase; letter-spacing: 1px; font-size: 10px; color: #333333; display: block; margin-bottom: 4px; }
+@media only screen and (min-width: 0) and (max-width: 700px) { .grid-form [data-row-span] [data-field-span] { border-bottom: 1px solid #333; width: 100% !important; } }
+@media only screen and (min-width: 700px) { .grid-form [data-row-span] [data-field-span] { border-right: 1px solid #333; display: block; } }
+.grid-form [data-row-span] [data-field-span] label:first-child { margin-top: 0; text-transform: uppercase; letter-spacing: 1px; font-size: 10px; color: #333; display: block; margin-bottom: 4px; }
 .grid-form [data-row-span] [data-field-span] label:first-child:hover { cursor: text; }
 .grid-form [data-row-span] [data-field-span]:last-child { border-right: none; }
 .grid-form [data-row-span] [data-field-span].focus { background: #fffad4; }
 .grid-form [data-row-span] [data-field-span].focus label { color: #262626; }
 .grid-form [data-row-span] [data-field-span]:hover { background: #fffded; cursor: text; }
+@media print { .grid-form [data-row-span] { display: table; height: 56px; page-break-inside: avoid; }
+  .grid-form [data-row-span] [data-field-span] { border-right: 1px solid #333333; display: table-cell; float: none; }
+  .grid-form [data-row-span] [data-field-span].focus, .grid-form [data-row-span] [data-field-span]:hover { background: none; }
+  .grid-form [data-row-span] [data-field-span] label:first-child { letter-spacing: 0; } }
 .grid-form [data-row-span="1"] > [data-field-span="1"] { width: 100%; }
 .grid-form [data-row-span="2"] > [data-field-span="1"] { width: 50%; }
 .grid-form [data-row-span="2"] > [data-field-span="2"] { width: 100%; }
@@ -99,3 +103,5 @@
 .grid-form [data-row-span="12"] > [data-field-span="10"] { width: 83.33333%; }
 .grid-form [data-row-span="12"] > [data-field-span="11"] { width: 91.66667%; }
 .grid-form [data-row-span="12"] > [data-field-span="12"] { width: 100%; }
+
+/*# sourceMappingURL=gridforms.css.map */
