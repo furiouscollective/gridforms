@@ -42,8 +42,12 @@ $(function() {
         },
         events: function() {
             var that = this;
-            that.el.fieldsContainers.click(function() {
-                $(this).find('input[type="text"], textarea, select').focus();
+            that.el.fieldsContainers.click(function(event) {
+                var focusableFields = that.el.focusableFields.selector;
+                
+                if (!$(event.target).is(focusableFields)) {
+                    $(this).find('input[type="text"], textarea, select').first().focus();
+                }
             });
             that.el.focusableFields.focus(function() {
                 that.focusField($(this));
