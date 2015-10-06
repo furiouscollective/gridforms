@@ -76,6 +76,15 @@ $field-focus-color: darken(#FFFDED, 5%)
 ###Compatibility
 Include Scott Jehl's [Respond.js](https://github.com/scottjehl/Respond) if you want the form to be responsive in ie8.
 
+###Printing
+GridForms will use a `@media print` query in the CSS to ensure that the printed GridForms look as nice on paper as they do on the screen. You can use this to generate an empty form for someone to fill out on paper or you can replace the `form` `input` tags with actual content (including multi-line content) and have the form and content printed out. Everything will just scale nicely.
+
+You don't need to do anything special to print your GridForms, you can just print from your browser using `File > Print` like normal.
+
+However, if you are generating a PDF dynamically, such as using **[wkhtmltopdf](http://wkhtmltopdf.org/)**, you will need to include `--print-media-type` as an option on the command line. This ensures GridForms renders as a printed media type and the special `@media print` query in the CSS gets called.
+
+Similarly, if you are using **[wicked_pdf](https://github.com/mileszs/wicked_pdf)** to generate PDFs from your Rails application, you'll need to ensure `print_media_type: true` is set as a configuration option.
+
 ###Todo
 
 - Test forms with all possible field types
