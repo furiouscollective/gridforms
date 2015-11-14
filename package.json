@@ -1,0 +1,23 @@
+{
+  "name": "gridforms",
+  "version": "1.0.6",
+  "description": "Data entry can be beautiful",
+  "files": [
+    "gridforms"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kumailht/gridforms.git"
+  },
+  "keywords": [
+    "responsive",
+    "grid",
+    "forms"
+  ],
+  "author": "Kumail Hunaid <contact@kumailht.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kumailht/gridforms/issues"
+  },
+  "homepage": "https://github.com/kumailht/gridforms#readme"
+}
