@@ -72,6 +72,11 @@ $(function() {
                     // Get the height of the row (thus the tallest element's height)
                     var fieldRow = $(this);
                     var rowHeight = fieldRow.css('height');
+                    
+                    // Singleton textarea rows should determine their row height
+                    if (fieldRow.children().children("textarea").length === 1) {
+                      return;
+                    }
 
                     // Set the height for each field in the row...
                     fieldRow.find(fieldsContainers).css('height', rowHeight);
