@@ -46,7 +46,7 @@ $(function() {
                 var focusableFields = that.el.focusableFields.selector;
                 
                 if (!$(event.target).is(focusableFields)) {
-                    $(this).find('input[type="text"], textarea, select').first().focus();
+                    $(this).find('input[type="text"],input[type="tel"],input[type="email"], textarea, select').first().focus();
                 }
             });
             that.el.focusableFields.focus(function() {
