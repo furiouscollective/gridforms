@@ -21,7 +21,7 @@
 //  THE SOFTWARE.
 //
 
-$(function() {
+jQuery(function($) {
     var GridForms = {
         el: {
             fieldsRows: $('[data-row-span]'),
