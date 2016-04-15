@@ -68,7 +68,7 @@ $(function() {
 
             // Make sure that the fields aren't stacked
             if (!this.areFieldsStacked()) {
-                fieldsRows.each(function() {
+                fieldsRows.filter(":visible").each(function() {
                     // Get the height of the row (thus the tallest element's height)
                     var fieldRow = $(this);
                     var rowHeight = fieldRow.css('height');
