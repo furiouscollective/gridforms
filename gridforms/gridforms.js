@@ -46,7 +46,7 @@ jQuery(function($) {
                 var focusableFields = that.el.focusableFields.selector;
                 
                 if (!$(event.target).is(focusableFields)) {
-                    $(this).find('input[type="text"],input[type="tel"],input[type="email"], textarea, select').first().focus();
+                    $(this).find('input[type="text"],input[type="number"],input[type="tel"],input[type="email"], textarea, select').first().focus();
                 }
             });
             that.el.focusableFields.focus(function() {
@@ -84,7 +84,7 @@ jQuery(function($) {
             }
         },
         areFieldsStacked: function() {
-            // Get the first row 
+            // Get the first row https://github.com/kumailht/gridforms/pull/49/files
             // which does not only contain one field 
             var firstRow = this.el.fieldsRows
                 .not('[data-row-span="1"]')
