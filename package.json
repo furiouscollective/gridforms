@@ -1,6 +1,6 @@
 {
   "name": "gridforms",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Data entry can be beautiful",
   "files": [
     "gridforms"
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/kumailht/gridforms/issues"
   },
-  "homepage": "https://github.com/kumailht/gridforms#readme"
+  "homepage": "https://github.com/kumailht/gridforms#readme",
+  "scripts": {
+    "build": "sass -t compact gridforms/gridforms.sass gridforms/gridforms.css"
+  }
 }
