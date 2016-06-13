@@ -84,7 +84,7 @@ jQuery(function($) {
             }
         },
         areFieldsStacked: function() {
-            // Get the first row 
+            // Get the first row https://github.com/kumailht/gridforms/pull/49/files
             // which does not only contain one field 
             var firstRow = this.el.fieldsRows
                 .not('[data-row-span="1"]')
