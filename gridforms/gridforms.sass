@@ -117,13 +117,14 @@
                     cursor: text
             &:last-child
                 border-right: none
+            &:hover
+                background: lighten($field-focus-color, 5%)
+                cursor: text
             &.focus
                 background: $field-focus-color
                 label
                     color: darken($label-color, 5%)
-            &:hover
-                background: lighten($field-focus-color, 5%)
-                cursor: text
+            
                 
     // Overide styles when printing to ensure good looking output.
     @media print
