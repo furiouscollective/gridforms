@@ -44,7 +44,7 @@ jQuery(function($) {
             var that = this;
             that.el.fieldsContainers.click(function(event) {
                 var focusableFields = that.el.focusableFields.selector;
-                
+
                 if (!$(event.target).is(focusableFields)) {
                     $(this).find('input[type="text"],input[type="number"],input[type="tel"],input[type="email"], textarea, select').first().focus();
                 }
@@ -66,11 +66,11 @@ jQuery(function($) {
             var fieldsRows = this.el.fieldsRows;
             var fieldsContainers = this.el.fieldsContainers;
 
-            // Make sure that the fields aren't stacked
-            if (!this.areFieldsStacked()) {
+            // Make sure that the fields aren't stacked and window width is more than 700px
+            if (!this.areFieldsStacked() && $(window).width() > 700) {
                 fieldsRows.filter(":visible").each(function() {
                     var fieldRow = $(this);
-                    
+
                     // Singleton textarea rows should determine their row height
                     var rowInputs = fieldRow.children();
                     if (rowInputs.length === 1 && rowInputs.children("textarea").length === 1) return;
@@ -84,13 +84,13 @@ jQuery(function($) {
             }
         },
         areFieldsStacked: function() {
-            // Get the first row 
-            // which does not only contain one field 
+            // Get the first row
+            // which does not only contain one field
             var firstRow = this.el.fieldsRows
                 .not('[data-row-span="1"]')
                 .first();
 
-            // Get to the total width 
+            // Get to the total width
             // of each field witin the row
             var totalWidth = 0;
             firstRow.children().each(function() {
