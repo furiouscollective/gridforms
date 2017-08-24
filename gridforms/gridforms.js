@@ -43,7 +43,7 @@ jQuery(function($) {
         events: function() {
             var that = this;
             that.el.fieldsContainers.click(function(event) {
-                var focusableFields = that.el.focusableFields.selector;
+                var focusableFields = that.el.focusableFields;
 
                 if (!$(event.target).is(focusableFields)) {
                     $(this).find('input[type="text"],input[type="number"],input[type="tel"],input[type="email"], textarea, select').first().focus();
