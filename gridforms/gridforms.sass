@@ -124,6 +124,22 @@
                 background: $field-focus-color
                 label
                     color: darken($label-color, 5%)
+            &.grid-form-error
+                &.focus
+                    background: #fffad4
+                    cursor: text
+                background: #fe826d
+                &:hover
+                    background: #fe826d
+    .grid-form-help
+        font-size: 75%
+        margin: -5px 0
+        color: rgba(33, 33, 33, .45)
+        -webkit-user-select: none
+        -moz-user-select: none
+        -ms-user-select: none
+        -o-user-select: none
+        user-select: none
             
                 
     // Overide styles when printing to ensure good looking output.

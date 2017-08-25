@@ -21,6 +21,10 @@
 .grid-form [data-row-span] [data-field-span]:hover { background: #fffded; cursor: text; }
 .grid-form [data-row-span] [data-field-span].focus { background: #fffad4; }
 .grid-form [data-row-span] [data-field-span].focus label { color: #262626; }
+.grid-form [data-row-span] [data-field-span].grid-form-error { background: #fe826d; }
+.grid-form [data-row-span] [data-field-span].grid-form-error.focus { background: #fffad4; cursor: text; }
+.grid-form [data-row-span] [data-field-span].grid-form-error:hover { background: #fe826d; }
+.grid-form .grid-form-help { font-size: 75%; margin: -5px 0; color: rgba(33, 33, 33, 0.45); -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none; }
 @media print { .grid-form [data-row-span] { display: table; height: 56px; page-break-inside: avoid; }
   .grid-form [data-row-span] [data-field-span] { border-right: 1px solid #333333; display: table-cell; float: none; }
   .grid-form [data-row-span] [data-field-span].focus, .grid-form [data-row-span] [data-field-span]:hover { background: none; }
