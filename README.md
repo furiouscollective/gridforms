@@ -1,11 +1,8 @@
 ## Gridforms
 An effort to make beautiful forms for web applications that make data entry less painful. Gridforms is a front-end library which handles the boilerplate necessary to build grid based forms.
 
-This is my first ever open source project so please [email](mailto:contact@kumailht.com) me if you spot any errors (which you're guaranteed to find). I am only now realizing how hard it is to write even simple documentation, your help in improving it will be greatly appreciated.
-
 ### Examples
-- [Gridforms Homepage](http://kumailht.com/gridforms)
-- [Example Bank Account Application Form](http://kumailht.com/gridforms/example.html)
+- [Gridforms Homepage](https://formkeep.com/gridforms)
 
 ### Basic Usage
 
@@ -93,4 +90,4 @@ Similarly, if you are using **[wicked_pdf](https://github.com/mileszs/wicked_pdf
 - Introduce a sass file to style error/help messages
 - Introduce another sass file that can style the various field types (debatable)
 
-If you have ideas on how to improve Gridforms or if you want to contribute to this repo, shoot me an email at [contact@kumailht.com](mailto:contact@kumailht.com).
+If you have ideas on how to improve Gridforms or if you want to contribute to this repo, shoot us an email at [support@formkeep.com](mailto:support@formkeep.com).

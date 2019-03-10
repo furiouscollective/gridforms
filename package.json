@@ -7,19 +7,19 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kumailht/gridforms.git"
+    "url": "git+https://github.com/furiouscollective/gridforms.git"
   },
   "keywords": [
     "responsive",
     "grid",
     "forms"
   ],
-  "author": "Kumail Hunaid <contact@kumailht.com>",
+  "author": "FormKeep <support@formkeep.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kumailht/gridforms/issues"
+    "url": "https://github.com/furiouscollective/gridforms/issues"
   },
-  "homepage": "https://github.com/kumailht/gridforms#readme",
+  "homepage": "https://github.com/furiouscollective/gridforms/issues",
   "scripts": {
     "build": "sass -t compact gridforms/gridforms.sass gridforms/gridforms.css"
   }

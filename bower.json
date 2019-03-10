@@ -1,8 +1,8 @@
 {
   "name": "gridforms",
-  "homepage": "kumailht.com/gridforms",
+  "homepage": "formkeep.com/gridforms",
   "authors": [
-    "Kumail Hunaid <contact@kumailht.com>"
+    "FormKeep <support@formkeep.com>"
   ],
   "description": "Data entry can be beautiful",
   "main": ["./gridforms/gridforms.css", "./gridforms/gridforms.js"],
